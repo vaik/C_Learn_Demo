@@ -43,6 +43,48 @@ enum animal select(void)
 	return(tmp);
 }
 
+//返回阶乘的值
+int factorial(int n){
+	if(n>0)
+		return (n * factorial(n-1));
+	else	
+		return (1);
+}
+
+//返回vx和vy的最大公约数(vx>= vy)
+int gcdf(int vx,int vy){
+	return (vy ==0 ? vx : gcdf(vy,vx%vy));
+}
+
+//求出va和vb的最大公约数
+int gcd(int va,int vb)
+{
+	return (va > vb ? gcdf(va,vb) : gcdf(vb,va));
+}
+
+//练习8-5 不递归实现阶乘
+int fact(int n){
+	if(n <= 0)
+		return 1;
+	int result=1;
+	do{
+		result *= n;
+		n--;
+	}while(n>1);
+	return result;	
+}
+
+//练习8-6
+int combination(int n,int r)
+{
+	if(n==0 || n==r || n<r)
+		return 1;
+	if(r==1)
+		return n;
+	return combination(n-1,r-1)+combination(n-1,r);
+}
+
+
 int main(void){
 	setlocale(LC_CTYPE,"");
 	
@@ -100,7 +142,7 @@ int main(void){
 	printf("b is %f\n",b); */
 	
 	//枚举示例
-	enum animal selected;
+	/* enum animal selected;
 	
 	do{
 		switch(selected = select()){
@@ -108,7 +150,74 @@ int main(void){
 			case Cat : cat(); break;
 			case Monkey : monkey();break;
 		}
-	}while(selected != Invalid);
+	}while(selected != Invalid); */
+	
+	//计算阶乘
+	/* int num;
+	
+	wprintf(L"请输入一个整数");
+	scanf("%d",&num);
+	
+	wprintf(L"该数阶乘为%d。\n",factorial(num)); */
+	
+	//求最大公约数示例
+	/* int n1,n2;
+	wprintf(L"请输入两个整数。\n");
+	wprintf(L"整数1：");scanf("%d",&n1);
+	wprintf(L"整数2：");scanf("%d",&n2);
+	
+	wprintf(L"最大公约数是%d。\n",gcd(n1,n2)); */
+	
+	//练习8-5
+	/* int num;
+	
+	wprintf(L"请输入一个整数");
+	scanf("%d",&num);
+	
+	wprintf(L"该数阶乘为%d。\n",fact(num)); */
+	
+	//练习8-6
+	/* int n,r;
+
+	wprintf(L"请输入一个整数n");
+	scanf("%d",&n);
+	wprintf(L"请输入一个小于等于n的正整数r");
+	scanf("%d",&r);
+	wprintf(L"计算结果为%d。\n",combination(n,r)); */
+	
+	//计算标准输入流中出现的数字字符数
+	/* int i,ch;
+	int cnt[10] = {0};
+	
+	while(1){
+		ch = getchar();
+		if(ch==EOF) break; */
+		/* switch(ch){
+			case '0' : cnt[0]++; break;
+			case '1' : cnt[1]++; break;
+			case '2' : cnt[2]++; break;
+			case '3' : cnt[3]++; break;
+			case '4' : cnt[4]++; break;
+			case '5' : cnt[5]++; break;
+			case '6' : cnt[6]++; break;
+			case '7' : cnt[7]++; break;
+			case '8' : cnt[8]++; break;
+			case '9' : cnt[9]++; break;
+		} */
+		//以上代码可以以下代码替代
+		/* if(ch >=48 && ch <= 57)
+			cnt[ch-48]++;
+	}
+	
+	wprintf(L"数字字符的出现次数\n");
+	for(i=0;i<10;i++)
+		printf("'%d' : %d\n",i,cnt[i]); */
+		
+	//标准输入流复制到标准输出流
+	int ch;
+	while((ch = getchar()) != EOF)
+		putchar(ch);
+		
 	
 	return 0;
 }
