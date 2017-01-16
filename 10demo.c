@@ -77,15 +77,22 @@ int main(void){
 	printf("masaki's height is %dcm \n",masaki);*/
 
 	//将n1和n2的和、差分别保存至sum、diff 演示
-	int na,nb;
+	/*int na,nb;
 	int wa = 0,sa = 0;
 	puts("Please input two integers!");
 	printf("Integer A:"); scanf("%d",&na);
 	printf("Integer B:"); scanf("%d",&nb);
 	sum_diff(na,nb,&wa,&sa);
 
-	printf("The sum of two integers is %d. The diff of tow integers %d.\n",wa,sa);
+	printf("The sum of two integers is %d. The diff of tow integers %d.\n",wa,sa);*/
 
+	//指针与数组
+	int i;
+	int vc[5] = {10,20,30,40,50};
+	int *ptr = &vc[0];
+
+	for(i=0;i<5;i++)
+		printf("vc[%d] = %d    ptr[%d] = %d    *(ptr + %d) = %d \n",i,vc[i],i,ptr[i],i,*(ptr+i));
 
 	return 0;
 }
