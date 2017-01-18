@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 //复制字符串
 char *str_copy(char *d,const char *s)
@@ -19,13 +20,77 @@ void put_string(const char *ptr){
 
 //返回字符串str中第一个出现字符C的指针，否则返回NULL
 char *str_char(const char *str,int c){
-	while(*str && *str!= c ){
-		*str++;
-		printf("str:%d,c:%d \n",*str,c);
+
+	char *ptr = (char *)str;
+	int flag = 0;
+	while(*ptr){
+		if(c == *ptr){
+			flag = 1;
+			break;
+		}
+		ptr++;
 	}
-	char *num = "";
-	num = &str[0];
-	return NULL;
+	if(!flag)
+		return NULL;
+	return (ptr);
+}
+
+//返回字符串str中出现字符C的个数
+int str_chnum(const char *str,int c){
+	int num = 0;
+	while(*str){
+		if(c == *str){
+			num++;
+		}
+		str++;
+	}
+	return (num);
+}
+
+//交字符串的英文字母转换为大写字母
+void str_toupper(char *str)
+{
+	char *ptr = str;
+	while(*ptr){
+		*ptr = toupper(*ptr);
+		ptr++;
+	}
+}
+
+//交字符串的英文字母转换为小写字母
+void str_tolower(char *str)
+{
+	char *ptr = str;
+	while(*ptr){
+		*ptr = tolower(*ptr);
+		ptr++;
+	}
+}
+
+//删除所有数字字符
+void del_digit(char *str){
+	int len = strlen(str);
+	char temp[len];
+	char *ptr = temp;
+	char *str1 = str;
+	//printf("1. ptr:%d,str:%d,str1:%d\n",ptr,str,str1);
+	int num = 0;
+	while(*str){
+		if(*str < '0' || *str > '9'){
+			*ptr = *str;
+			num++;
+			ptr++;
+		}
+		str++;
+	}
+	*ptr = '\0';
+	//printf("2. ptr:%d,str:%d,str1:%d\n",ptr,str,str1);
+	char *ptr1 = temp;
+	//printf("3. ptr1:%d,str:%d,str1:%d\n",ptr1,str,str1);
+	//printf("4. temp:%s,temp[0]'s address:%d\n",temp,temp);
+	while(*str1++ = *ptr1++);
+	num = len-num;
+	while(num--) *str1++='\0';
 }
 
 int main(void)
@@ -68,9 +133,36 @@ int main(void)
 	putchar('\n'); */
 	
 	//练习11-2
-	char str[128] = "ABCDEFCCD";
+	/* char str[128] = "ABCDEFCCD";
 	
-	printf("The Address is %d",str_char(str,'C'));
+	printf("The Address is %d",str_char(str,'F')); */
+	
+	//练习11-3
+	/* char str[128] = "ABCDEFCCD";
+	
+	printf("The number is %d",str_chnum(str,'G'));  */
+	
+	//练习11-4
+	/* char str[100];
+	
+	printf("Please Input string");
+	scanf("%s",str);
+	
+	str_toupper(str);
+	printf("The Upper:%s\n",str);
+	
+	str_tolower(str);
+	printf("The Lower:%s\n",str);  */
+
+	//练习11-5
+ 	char str[100];
+	printf("Please Input string");
+	scanf("%s",&str); 
+	//char *str = "ABCDEFCCD12121";
+
+	del_digit(str);
+	printf("The result is :%s\n",str); 
+	
 	
 	return 0;
 }
