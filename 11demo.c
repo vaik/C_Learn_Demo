@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 //复制字符串
 char *str_copy(char *d,const char *s)
@@ -73,7 +74,6 @@ void del_digit(char *str){
 	char temp[len];
 	char *ptr = temp;
 	char *str1 = str;
-	//printf("1. ptr:%d,str:%d,str1:%d\n",ptr,str,str1);
 	int num = 0;
 	while(*str){
 		if(*str < '0' || *str > '9'){
@@ -84,13 +84,40 @@ void del_digit(char *str){
 		str++;
 	}
 	*ptr = '\0';
-	//printf("2. ptr:%d,str:%d,str1:%d\n",ptr,str,str1);
 	char *ptr1 = temp;
-	//printf("3. ptr1:%d,str:%d,str1:%d\n",ptr1,str,str1);
-	//printf("4. temp:%s,temp[0]'s address:%d\n",temp,temp);
 	while(*str1++ = *ptr1++);
 	num = len-num;
 	while(num--) *str1++='\0';
+}
+
+int getpower(int num,int power){
+	int reuslt = 1;
+	while(power){
+		reuslt *=num;
+		power--;
+	}
+	return reuslt;
+}
+
+int strtoi(const char *nptr){
+	int len = strlen(nptr);
+	int temp[len];
+	int index = 0;
+	int reuslt = 0;
+	int i;
+	while(*nptr){
+		if(*nptr >= '0' && *nptr <='9'){
+			temp[index] = (int)(*nptr-'0');
+			index++;
+		}else{
+			break;
+		} 
+		nptr++;
+	}
+	for(i=0;i<index;i++){
+		reuslt += temp[i]*getpower(10,index-i-1);
+	} 
+	return reuslt;
 }
 
 int main(void)
@@ -155,14 +182,21 @@ int main(void)
 	printf("The Lower:%s\n",str);  */
 
 	//练习11-5
- 	char str[100];
+ 	/* char str[100];
 	printf("Please Input string");
-	scanf("%s",&str); 
+	scanf("%s",&str);
 	//char *str = "ABCDEFCCD12121";
 
 	del_digit(str);
 	printf("The result is :%s\n",str); 
+	 */
 	
+	//字符串转换函数
+	char str[] = "1234agc45";
+	printf("str	=\"%s\"\n",str);
+	printf("atoi(str)	= %d\n",atoi(str));
+	printf("strtoi(str)	= %d\n",strtoi(str));
+	//printf("%d\n",getpower(10,2));
 	
 	return 0;
 }
