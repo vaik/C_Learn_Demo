@@ -14,7 +14,13 @@ typedef struct{
 	double english;
 } student;
 
-student Stu[STUNUMBER];
+student StuDat[STUNUMBER];
+
+/* ---初始化学生数据--- */
+void init_stu_data(void)
+{
+	
+}
 
 /* ---显示学生信息--- */
 void get_stu_data(void){
@@ -38,6 +44,27 @@ void get_stu_data(void){
 	}
 }
 
+/* ---添加学生数据--- */
+int add_stu_data(student stu){
+	return 0;
+}
+
+/* ---删除学生信息---*/
+int del_stu_data(char no){
+	return 0;
+}
+
+/* ---判断学生是否存在--- */
+int exsit_stu(student stu)
+{
+	return 0;
+}
+
+/* ---学生排序--- */
+student[] sort_stu_data(void)
+{
+	return StuDat;
+}
 
 int main(void)
 {
