@@ -40,10 +40,10 @@ Status GetElem(SqList L,int i,ElemType *e){
 	int k;
 	if(L->length==MAXSIZE) //顺序线性表已经满
 		return ERROR;
-	if(i<1 || i>L->length)//当i不在范围内时
+	if(i<1 || i>L->length+1)//当i不在范围内时
 		return ERROR;
 	if(i<=L->length){
-		for(k=L->length-1;k>=i;k--)//将要插入位置后数据元素向位移动一位
+		for(k=L->length-1;k>=i-1;k--)//将要插入位置后数据元素向位移动一位
 			L->data[k+1] = L->data[k];
 	}
 	L->data[i-1]=e;//将新元素插入
@@ -71,11 +71,23 @@ Status GetElem(SqList L,int i,ElemType *e){
  }
 
 int main(void){
-	SqList *l;
-	ElemType *e;
-	l = (SqList *)malloc(sizeof(SqList));
-	ListInsert(l,1,1);
-	GetElem(*l,1,e);
-	printf("The first emlement in SqList is %d",*e);
+	SqList L = {{0},0};
+	ElemType e;
+	ElemType el;
+	if(ListInsert(&L,1,1)==ERROR){
+		printf("ListInsert error!\n");
+	}else{
+		if(GetElem(L,1,&e)==ERROR){
+			printf("GetElem error!\n");
+		}else{
+			printf("The first emlement in SqList is %d\n",e);
+		}
+		if(ListDelete(&L,1,&el)==ERROR){
+			printf("ListDelete error!\n");
+		}else{
+			printf("SqList lenght is %d\n el is %d \n",L.length,el);
+		}
+	} 
+
 	return 0;
 }
