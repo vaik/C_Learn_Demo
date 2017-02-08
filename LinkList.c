@@ -38,7 +38,7 @@ Status GetElem(LinkList L,int i,ElemType *e)
 }
 
 /* 初始条件，顺序线性表L已存在，1<=i<=ListLength(L) */
-/* 操作结果：在L中的第i位置插入新的数据元素e,L的长度加1 */
+/* 操作结果：在L中的第i位置插入新的数据元素e */
 Status ListIntert(LinkList *L,int i,ElemType e)
 {
 	int j;
@@ -62,7 +62,7 @@ Status ListIntert(LinkList *L,int i,ElemType e)
 }
 
 /* 初始条件，顺序线性表L已存在，1<=i<=ListLength(L) */
-/* 操作结果：在L中的第i位置插入新的数据元素e,L的长度加1 */
+/* 操作结果：删除在L中的第i位置的数据元素,并将数据返回至e中*/
 Status ListDelete(LinkList *L, int i, ElemType *e)
 {
 	int j;
